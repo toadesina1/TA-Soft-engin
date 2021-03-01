@@ -1,5 +1,6 @@
 """
 This module provides the presentation layer and can be consdired "the program."
+
 This module facilitates an infinite loop that:
 1. Clears the screen
 2. Prints the menu options
@@ -8,18 +9,21 @@ This module facilitates an infinite loop that:
     (T) List bookmarks by title
     (D) Delete a bookmark
     (Q) Quit
-3. Gets the user’s choice
+3. Gets the userâ€™s choice
     When chosen, use an Option class to match selection to command to
     1. Run the specified preparation step, if any.
-    2. Pass the return value from the preparation step, if any, to the specified command’s execute method.
+    2. Pass the return value from the preparation step, if any, to the specified commandâ€™s execute method.
     3. Print the result of the execution. These are the success messages or bookmark results returned from the business logic.
-4. Clears the screen and executes the command corresponding to the user’s choice
-5. Waits for the user to review the result, pressing Enter when they’re done
+4. Clears the screen and executes the command corresponding to the userâ€™s choice
+5. Waits for the user to review the result, pressing Enter when theyâ€™re done
+
 Room to grow.  
+
 This modular design, which separates concerns, provides opportunities for extensibility, making it possible to:
 1. Add any new database manipulation methods you may need to database.py.
 2. Add a command class that performs the business logic you need in commands.py.
 3. Hook up the new command to a new menu option in barky.py.
+
 """
 import os
 
@@ -50,7 +54,7 @@ def print_options(options):
     """
     1. Print the keyboard key for the user to enter to choose the option.
     2. Print the option text.
-    3. Check if the user’s input matches an option and, if so, choose it.
+    3. Check if the userâ€™s input matches an option and, if so, choose it.
     """
     for shortcut, option in options.items():
         print(f"({shortcut}) {option}")
@@ -63,8 +67,8 @@ def option_choice_is_valid(choice, options):
 
 def get_option_choice(options):
     """
-    1. Prompt the user to enter a choice, using Python’s built-in input function.
-    2. If the user’s choice matches one of those listed, call that option’s choose method.
+    1. Prompt the user to enter a choice, using Pythonâ€™s built-in input function.
+    2. If the userâ€™s choice matches one of those listed, call that optionâ€™s choose method.
     3. Otherwise, repeat.
     """
     choice = input("Choose an option: ")

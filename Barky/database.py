@@ -1,11 +1,14 @@
 '''
 This module supports the following schema:
-ID — The ID is the primary key of the table, or the main identifier of each record. It should automatically increment each time a new record is added, using the AUTOINCREMENT keyword. This column is an INTEGER type; the rest are TEXT.
-Title — The title is required because it’s hard to skim your existing bookmarks if they’re only URLs. You can tell SQLite the column can’t be empty by using the NOT NULL keyword.
-URL — The URL is required, so it gets NOT NULL as well.
-Notes — Notes for a bookmark are optional, so only the TEXT specifier is necessary.
-Date — The date the bookmark was added is required, so it gets NOT NULL.
+
+ID â€” The ID is the primary key of the table, or the main identifier of each record. It should automatically increment each time a new record is added, using the AUTOINCREMENT keyword. This column is an INTEGER type; the rest are TEXT.
+Title â€” The title is required because itâ€™s hard to skim your existing bookmarks if theyâ€™re only URLs. You can tell SQLite the column canâ€™t be empty by using the NOT NULL keyword.
+URL â€” The URL is required, so it gets NOT NULL as well.
+Notes â€” Notes for a bookmark are optional, so only the TEXT specifier is necessary.
+Date â€” The date the bookmark was added is required, so it gets NOT NULL.
+
 SQL reference: https://www.w3schools.com/sql/default.asp
+
 CREATE TABLE IF NOT EXISTS bookmarks
 (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -14,6 +17,7 @@ CREATE TABLE IF NOT EXISTS bookmarks
     notes TEXT,
     date_added TEXT NOT NULL
 );
+
 '''
 
 import sqlite3
@@ -28,10 +32,12 @@ class DatabaseManager:
     def _execute(self, statement, values=None):
         '''
         The _execute method should:
+
         1. Accept a statement as a string argument
         2. Get a cursor from the database connection
         3. Execute a statement using the cursor (more on this shortly)
         4. Return the cursor, which has stored the result of the executed statement (if any)        
+
         this is designed to use placeholders in SQL statements to insert values
         '''
         with self.connection: #https://www.pythonforbeginners.com/files/with-statement-in-python
@@ -64,11 +70,12 @@ class DatabaseManager:
         INSERT INTO bookmarks
         (title, url, notes, date_added)
         VALUES (?, ?, ?, ?);
+
         This method: 
         1. Accepts two arguments: the name of the table, and a dictionary that maps column names to column values
         2. Constructs a placeholder string (a ? for each column specified)
         3. Constructs the string of the column names
-        4. Gets the column values as a tuple (A dictionary’s .values() returns a dict_ values object, which happens not to work with sqlite3’s execute method.)
+        4. Gets the column values as a tuple (A dictionaryâ€™s .values() returns a dict_ values object, which happens not to work with sqlite3â€™s execute method.)
         5. Executes the statement with _execute, passing the SQL statement with placeholders and the column values as separate arguments
         '''
         placeholders = ', '.join('?' * len(data))
@@ -89,10 +96,12 @@ class DatabaseManager:
         We delete a record from the database in SQL using:
         DELETE FROM bookmarks
         WHERE ID = 3;
+
         To do so, this method:
-        1. Accepts two arguments: the table name to delete records from, and a dictionary mapping column names to the value to match on. The criteria should be a required argument, because you don’t want to delete all your records.
+        1. Accepts two arguments: the table name to delete records from, and a dictionary mapping column names to the value to match on. The criteria should be a required argument, because you donâ€™t want to delete all your records.
         2. Constructs a string of placeholders for the WHERE clause.
         3. Constructs the full DELETE FROM query and executes it with _execute.
+
         '''
         placeholders = [f'{column} = ?' for column in criteria.keys()]
         delete_criteria = ' AND '.join(placeholders)
@@ -110,6 +119,7 @@ class DatabaseManager:
         SQL select:
         SELECT * FROM bookmarks
         WHERE ID = 3;
+
         SQL sort:
         SELECT * FROM bookmarks
         WHERE ID = ?
@@ -131,4 +141,4 @@ class DatabaseManager:
             tuple(criteria.values()),
         )
 
-© 2021 GitHub, Inc.
+
