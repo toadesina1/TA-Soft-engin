@@ -359,3 +359,62 @@ def login_required(view):
 
     return wrapped_view
 ```
+
+### Templates
+
+While those useing Flask to create a REST API may not use Jinja2 templates to generate HTML, the concepts are still useful.
+
+A template is a means of generating output such that logic-driven dynmic data can be interspersed within static content, such as HTML.
+
+Flask uses the [Jinja2 templating engine for Python](https://jinja.palletsprojects.com/en/2.11.x/).  Most templating engines are very similar to one another.
+
+```html
+<!doctype html>
+<title>{% block title %}{% endblock %} - Flaskr</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<nav>
+  <h1>Flaskr</h1>
+  <ul>
+    {% if g.user %}
+      <li><span>{{ g.user['username'] }}</span>
+      <li><a href="{{ url_for('auth.logout') }}">Log Out</a>
+    {% else %}
+      <li><a href="{{ url_for('auth.register') }}">Register</a>
+      <li><a href="{{ url_for('auth.login') }}">Log In</a>
+    {% endif %}
+  </ul>
+</nav>
+<section class="content">
+  <header>
+    {% block header %}{% endblock %}
+  </header>
+  {% for message in get_flashed_messages() %}
+    <div class="flash">{{ message }}</div>
+  {% endfor %}
+  {% block content %}{% endblock %}
+</section>
+```
+
+You can see that the template tags `{% %}` are used to escape the static content to provide dynamic content in place of the tag.
+
+Here is the template for user registration:
+
+```html
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Register{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="post">
+    <label for="username">Username</label>
+    <input name="username" id="username" required>
+    <label for="password">Password</label>
+    <input type="password" name="password" id="password" required>
+    <input type="submit" value="Register">
+  </form>
+{% endblock %}
+```
+
+In particular, jinja2 and the [Django Template Language](https://docs.djangoproject.com/en/3.1/ref/templates/language/) are very similar.
