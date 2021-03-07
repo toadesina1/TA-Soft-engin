@@ -524,3 +524,67 @@ def create():
 
     return render_template('blog/create.html')
 ```
+
+### Test Coverage
+
+The Flask tutorial mentions testing, although admittedly and curiously at the end of the tutorial.
+
+As we have already done in previous work, the Flask tutorial uses the `pytest` package as well as `coverage` in order to track how thoroughly the application is tested.
+
+The testing the Flask tutorial does not use the level of architecture for extensibility that would be ideal, but it does show testability.
+
+First, we install the packages:
+
+```bash
+pip install pytest coverage
+```
+
+As we have discussed previously, the tests for flaskr use `pytest` and utilize a `conftest.py` module to declate setup and fixtures for the tests.
+
+Ideally, and this is demonstrated in the tutorial, you would organize your tests to reflect the structure of the project.  Therefore, the tutorial develops a one to one mapping between application modules and test modules:
+
+* factory
+* database
+* authentication
+* blog
+
+Pytest can be supplied a `setup.cfg` file to make running tests for the project more compact and direct.
+
+```
+[tool:pytest]
+testpaths = tests
+
+[coverage:run]
+branch = True
+source = flaskr
+```
+
+The commands to run now are simple:
+* `pytest` this will use the `setup.cfg` file to run all of the tests in each test module
+* `coverage` this will give a report on testing coverage for the projuect.
+
+You can run `coverage html` to get the coverage reports as a web page.
+
+## Make installable
+
+The step in the tutorial about making the project installable is vital to follow or testing won't work.
+
+Key components are:
+* setup.py
+* `pip install -e .`
+
+```python
+# in setup.py
+from setuptools import find_packages, setup
+
+setup(
+    name='flaskr',
+    version='1.0.0',
+    packages=find_packages(),
+    include_package_data=True,
+    zip_safe=False,
+    install_requires=[
+        'flask',
+    ],
+)
+```

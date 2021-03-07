@@ -32,9 +32,9 @@ def create_app(test_config=None):
     def hello():
         return "Hello, World!"
 
-    @app.route("/index")
-    def index():
-        return "where it all begins"
+    # @app.route("/index")
+    # def index():
+    #     return "where it all begins"
 
     # register the database commands
     from . import db
@@ -42,7 +42,7 @@ def create_app(test_config=None):
     db.init_app(app)
 
     # apply the blueprints to the app
-    from . import auth
+    from . import auth, blog
 
     app.register_blueprint(auth.bp)
     app.register_blueprint(blog.bp)
