@@ -112,3 +112,5 @@ Any salient notes about a section of the tutorial appears here.
 This portion of the tutorial explains the anatomy of a typical Flask application by example.
 
 ![project layout](./images/project_layout.png)
+
+The need for a [good .gitignore file](https://github.com/github/gitignore/blob/master/Python.gitignore) is also emphasized.
