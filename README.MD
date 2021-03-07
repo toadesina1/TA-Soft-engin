@@ -423,3 +423,104 @@ In particular, jinja2 and the [Django Template Language](https://docs.djangoproj
 ### Static Files
 
 Flask has a straight-forward means of supporting static files.  The convention is: `{{ url_for('static', filenam='name_of_file')}}`
+
+### Blog Blueprint
+
+Most of the fundamentals of Flask can be applied in this simple Blog Blueprint.  In particular, our ability to create, read, update, and delete records of a type is a key semantic in most web appliications.
+
+The blueprint uses a familiar pattern:
+
+```python
+# in the blog.py module
+from flask import (
+    Blueprint, flash, g, redirect, render_template, request, url_for
+)
+from werkzeug.exceptions import abort
+
+from flaskr.auth import login_required
+from flaskr.db import get_db
+
+bp = Blueprint('blog', __name__)
+```
+#### READ
+
+The index view of most apps will be the READ component of CRUD.
+
+```python
+# in the blog.py module
+@bp.route('/')
+def index():
+    db = get_db()
+    posts = db.execute(
+        'SELECT p.id, title, body, created, author_id, username'
+        ' FROM post p JOIN user u ON p.author_id = u.id'
+        ' ORDER BY created DESC'
+    ).fetchall()
+    return render_template('blog/index.html', posts=posts)
+```
+
+The sqlite package in Python provides a convenient way of working with data
+
+The index template demonstrates how Jinga2 facilitates some basic programming structures within the template:
+
+```html
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Posts{% endblock %}</h1>
+  {% if g.user %}
+    <a class="action" href="{{ url_for('blog.create') }}">New</a>
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {% for post in posts %}
+    <article class="post">
+      <header>
+        <div>
+          <h1>{{ post['title'] }}</h1>
+          <div class="about">by {{ post['username'] }} on {{ post['created'].strftime('%Y-%m-%d') }}</div>
+        </div>
+        {% if g.user['id'] == post['author_id'] %}
+          <a class="action" href="{{ url_for('blog.update', id=post['id']) }}">Edit</a>
+        {% endif %}
+      </header>
+      <p class="body">{{ post['body'] }}</p>
+    </article>
+    {% if not loop.last %}
+      <hr>
+    {% endif %}
+  {% endfor %}
+{% endblock %}
+```
+
+#### CREATE
+
+We will always use HTML forms for input and the means by which we work with a form can be see in the view and template for the `/create` route:
+
+```python
+@bp.route('/create', methods=('GET', 'POST'))
+@login_required
+def create():
+    if request.method == 'POST':
+        title = request.form['title']
+        body = request.form['body']
+        error = None
+
+        if not title:
+            error = 'Title is required.'
+
+        if error is not None:
+            flash(error)
+        else:
+            db = get_db()
+            db.execute(
+                'INSERT INTO post (title, body, author_id)'
+                ' VALUES (?, ?, ?)',
+                (title, body, g.user['id'])
+            )
+            db.commit()
+            return redirect(url_for('blog.index'))
+
+    return render_template('blog/create.html')
+```
