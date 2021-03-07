@@ -138,7 +138,6 @@ import os
 
 from flask import Flask
 
-
 def create_app(test_config=None):
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
@@ -169,3 +168,21 @@ def create_app(test_config=None):
 ```
 
 Tres elegant!
+
+#### Environment Variables
+
+Also, I am using **python-dotenv** to manage environment variables for the app.
+
+`pip install python-dotenv`
+
+Once installed, we use this code to read the .env file:
+
+```python
+from dotenv import load_dotenv
+load_dotenv()
+```
+
+The tutorial directs that we utilize the following environment variables:
+
+* FLASK_APP=flaskr
+* FLASK_ENV=development
