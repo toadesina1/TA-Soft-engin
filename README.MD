@@ -2,6 +2,8 @@
 
 This is a walkthrough using the [Flask Tutorial for version 1.1.x](https://flask.palletsprojects.com/en/1.1.x/tutorial/).
 
+**NOTE:** the final branch `test_coverage` contains the fully-completed tutorial.
+
 [miniconda](https://docs.conda.io/en/latest/miniconda.html) was used for virtual environment management.
 
 The following conda command is used to create the virtual environment:
