@@ -58,7 +58,7 @@ Now that git is tracking changes in your files, you can periodically "save" thes
 
 This is not the same thing as saving the file, it is saving the current state of the file(s) for the purposes of change tracking.  As sucn, git only tracks changes.
 
-`git commit -m 'commit message'`
+`git commit -m 'commit message`
 
 #### Working with Remote Peers
 
@@ -527,6 +527,30 @@ def create():
     return render_template('blog/create.html')
 ```
 
+## Make installable
+
+The step in the tutorial about making the project installable is vital to follow or testing won't work.
+
+Key components are:
+* setup.py
+* `pip install -e .`
+
+```python
+# in setup.py
+from setuptools import find_packages, setup
+
+setup(
+    name='flaskr',
+    version='1.0.0',
+    packages=find_packages(),
+    include_package_data=True,
+    zip_safe=False,
+    install_requires=[
+        'flask',
+    ],
+)
+```
+
 ### Test Coverage
 
 The Flask tutorial mentions testing, although admittedly and curiously at the end of the tutorial.
@@ -566,27 +590,3 @@ The commands to run now are simple:
 * `coverage` this will give a report on testing coverage for the projuect.
 
 You can run `coverage html` to get the coverage reports as a web page.
-
-## Make installable
-
-The step in the tutorial about making the project installable is vital to follow or testing won't work.
-
-Key components are:
-* setup.py
-* `pip install -e .`
-
-```python
-# in setup.py
-from setuptools import find_packages, setup
-
-setup(
-    name='flaskr',
-    version='1.0.0',
-    packages=find_packages(),
-    include_package_data=True,
-    zip_safe=False,
-    install_requires=[
-        'flask',
-    ],
-)
-```
