@@ -418,3 +418,7 @@ Here is the template for user registration:
 ```
 
 In particular, jinja2 and the [Django Template Language](https://docs.djangoproject.com/en/3.1/ref/templates/language/) are very similar.
+
+### Static Files
+
+Flask has a straight-forward means of supporting static files.  The convention is: `{{ url_for('static', filenam='name_of_file')}}`
