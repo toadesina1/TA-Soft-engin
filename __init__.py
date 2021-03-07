@@ -8,4 +8,4 @@ load_dotenv()
 # load_dotenv(dotenv_path=env_path)
 
 
-print (os.getenv('FLASK_APP'))
+# print (os.getenv('FLASK_APP'))
