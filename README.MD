@@ -58,7 +58,7 @@ Now that git is tracking changes in your files, you can periodically "save" thes
 
 This is not the same thing as saving the file, it is saving the current state of the file(s) for the purposes of change tracking.  As sucn, git only tracks changes.
 
-`git commit -m 'commit message`
+`git commit -m 'commit message'`
 
 #### Working with Remote Peers
 
