@@ -2,6 +2,12 @@
 
 This is a walkthrough using the [Flask Tutorial for version 1.1.x](https://flask.palletsprojects.com/en/1.1.x/tutorial/).
 
+[miniconda](https://docs.conda.io/en/latest/miniconda.html) was used for virtual environment management.
+
+The following conda command is used to create the virtual environment:
+
+`conda create -n flask_tutorial python=3.9`
+
 ## Git Basics
 
 As I will create branches for each phase of the tutorial, I first review some git basics.
@@ -114,3 +120,52 @@ This portion of the tutorial explains the anatomy of a typical Flask application
 ![project layout](./images/project_layout.png)
 
 The need for a [good .gitignore file](https://github.com/github/gitignore/blob/master/Python.gitignore) is also emphasized.
+
+### Application Setup
+
+The simplicity of Flask is that a singleton Flask object handles the functions of the pogram and framework.
+
+It is necessary to install flask using pip: `pip install flask`
+
+However, the tutorial takes a more sophisticated approach using a __init__.py file to initialze the Flask object for the entire package.
+
+The tutorial has us place all application code (app is called **flaskr**) into a dedicated subdirectory: `flaskr`
+
+Then the Flask object/app is initialized thusly:
+
+```python
+import os
+
+from flask import Flask
+
+
+def create_app(test_config=None):
+    # create and configure the app
+    app = Flask(__name__, instance_relative_config=True)
+    app.config.from_mapping(
+        SECRET_KEY='dev',
+        DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
+    )
+
+    if test_config is None:
+        # load the instance config, if it exists, when not testing
+        app.config.from_pyfile('config.py', silent=True)
+    else:
+        # load the test config if passed in
+        app.config.from_mapping(test_config)
+
+    # ensure the instance folder exists
+    try:
+        os.makedirs(app.instance_path)
+    except OSError:
+        pass
+
+    # a simple page that says hello
+    @app.route('/hello')
+    def hello():
+        return 'Hello, World!'
+
+    return app
+```
+
+Tres elegant!
