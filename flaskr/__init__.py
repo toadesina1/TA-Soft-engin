@@ -2,8 +2,11 @@ import os
 
 from flask import Flask
 
-
 def create_app(test_config=None):
+    """
+    From the "Patterns for Flask" section in the documentation, this is a factory pattern for Flask:
+    https://flask.palletsprojects.com/en/1.1.x/patterns/appfactories/
+    """
     # create and configure the app
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
