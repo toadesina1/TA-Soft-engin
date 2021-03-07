@@ -276,3 +276,86 @@ def create_app():
 ```
 
 Now, the `flask init-db` command can be run
+
+### Blueprints and Views
+
+Flask does a degree of namespacing with the concept of a blueprint which aggregates views and code to be used together.  The documentation indicates that these are blueprints as they shape how an app can be made within the broader flask app.
+
+In this case, an `auth` blueprint will be created to handle the related facilities of providing authentication and authorization.
+
+An `auth.py` module is created:
+
+```python
+# in the auth.py module
+import functools
+
+from flask import (
+    Blueprint, flash, g, redirect, render_template, request, session, url_for
+)
+from werkzeug.security import check_password_hash, generate_password_hash
+
+from flaskr.db import get_db
+
+bp = Blueprint('auth', __name__, url_prefix='/auth')
+```
+
+As was the case with the database, this blueprint is registered with the Flask app in the `create_app` factory method:
+
+```python
+    # included in the create_app factory method
+    from . import auth
+    app.register_blueprint(auth.bp)
+```
+
+#### View?
+
+A view is part of the MVC pattern that simply suggests how Flask pairs a route dectorator with the code that should be run when the route is matched.
+
+This may be evident in the following register view defined in the `auth.py` module:
+
+```python
+@bp.route('/register', methods=('GET', 'POST'))
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        db = get_db()
+        error = None
+
+        if not username:
+            error = 'Username is required.'
+        elif not password:
+            error = 'Password is required.'
+        elif db.execute(
+            'SELECT id FROM user WHERE username = ?', (username,)
+        ).fetchone() is not None:
+            error = 'User {} is already registered.'.format(username)
+
+        if error is None:
+            db.execute(
+                'INSERT INTO user (username, password) VALUES (?, ?)',
+                (username, generate_password_hash(password))
+            )
+            db.commit()
+            return redirect(url_for('auth.login'))
+
+        flash(error)
+
+    return render_template('auth/register.html')
+```
+
+Other views are specified as required to complete the blueprint.
+
+We can also set a decorator function to be used to establish authorization for an authenticated user:
+
+```python
+def login_required(view):
+    @functools.wraps(view)
+    def wrapped_view(**kwargs):
+        if g.user is None:
+            return redirect(url_for('auth.login'))
+
+        return view(**kwargs)
+
+    return wrapped_view
+```
