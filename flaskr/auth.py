@@ -7,6 +7,8 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from . db import get_db
 
+# http://example.com/auth/login
+
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
 # views
