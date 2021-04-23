@@ -1,5 +1,5 @@
 TimeTracky
-TiemTracky  is inspired by Dane Hillard's Bark example of an application that demonstrates some basic software engineering principles such as:
+TiemTracky  is inspired by the components of the APP Book's architecture that demonstrates some basic software engineering principles such as:
 
 Separation of concerns
 Loose Coupling
@@ -7,7 +7,7 @@ Inheritance
 Extensibility
 Abstraction
 Refactoring
-This repository is an extension of Dane's example to also include testing.
+The repository is an extension of Dane's example that also include testing.
 
 Layered Architecture
 At a basic level, the architecture is designed with a layered strategy to include the following common/typical elements:
@@ -44,7 +44,7 @@ Improve architecture by using:
 SOLID
 Repository Pattern and Unit of Work (understand how SQLAlchemy is really doing this)
 Dependency injection
-SQLAlchemy 1.3.x to 1.4.x
+SQLAlchemy 1.4.x
 
 After following the APP architecture, we will validate and justify the code through functional testing that includes;
 Unit Tests
