@@ -57,6 +57,7 @@ After following the APP architecture, we will validate and justify the code thro
 * End-to-End Tests
 
 ### Report Section
+show report:
 
 There are four sections in the report, each one is a aggregated view of the previous one.
 
@@ -72,7 +73,7 @@ total time worked on a task when you have worked on it multiple times.
 
 
 For example, you entered the activities below throughout the day:
-
+```
 $ add "project-1: task-3"
 $ add "project-2: task-2"
 $ add "project-1: task-1"
@@ -114,6 +115,7 @@ Break   Time: 1h00
 (1h45) 13:00-14:45 project-2: task-2
 (2h15) 14:45-17:00 project-1: task-2
 ```
+
 The first section, the summary section, shows that you worked 7h and
 had a 1-hour break.
 
