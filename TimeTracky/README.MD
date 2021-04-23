@@ -115,6 +115,10 @@ Break   Time: 1h00
 (1h45) 13:00-14:45 project-2: task-2
 (2h15) 14:45-17:00 project-1: task-2
 ```
+```
+[timezone]
+enabled = true
+```
 
 The first section, the summary section, shows that you worked 7h and
 had a 1-hour break.
