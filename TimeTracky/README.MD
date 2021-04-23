@@ -9,7 +9,7 @@ TimeTracky is inspired by the components of the APP Book's architecture that dem
 
 The repository is an extension of Dane's example that also include testing.
 
-Layered Architecture
+Layered Architecture:
     At a basic level, the architecture is designed with a layered strategy to include the following common/typical elements:
 
 * Presentation Layer (will be a module called models.py here)
