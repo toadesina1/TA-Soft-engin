@@ -38,18 +38,17 @@ CREATE TABLE IF NOT EXISTS time_entry
 );
 ```
 
-
 The TimeTracky factored using;
 
-SQLAlchemy O/RM that will handle our data
-Completed the implicit and explicit promises of the existing API
-We use web-based REST API
-Use looser coupling
-Improve architecture by using:
-SOLID
-Repository Pattern and Unit of Work (understand how SQLAlchemy is really doing this)
-Dependency injection
-SQLAlchemy 1.4.x
+1. SQLAlchemy O/RM that will handle our data
+2. Completed the implicit and explicit promises of the existing API
+3. We use web-based REST API
+4. Use looser coupling
+5. Improve architecture by using:
+6. SOLID
+7. Repository Pattern and Unit of Work (understand how SQLAlchemy is really doing this)
+8. Dependency injection
+9. SQLAlchemy 1.4.x
 
 After following the APP architecture, we will validate and justify the code through functional testing that includes;
 * Unit Tests
