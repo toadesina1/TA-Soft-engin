@@ -12,9 +12,9 @@ The repository is an extension of Dane's example that also include testing.
 Layered Architecture:
     At a basic level, the architecture is designed with a layered strategy to include the following common/typical elements:
 
-* Presentation Layer (will be a module called models.py here)
-* Business Logic Layer (will be a module called commands.py here)
-* Presistence Layer (will be a module called repository.py here)
+* Presentation Layer (will be a module called models.py)
+* Business Logic Layer (will be a module called commands.py)
+* Presistence Layer (will be a module called repository.py)
 
 ## Bare Bones Approach
 
