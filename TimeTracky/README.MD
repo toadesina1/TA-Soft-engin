@@ -10,7 +10,7 @@ TimeTracky is inspired by the components of the APP Book's architecture that dem
 The repository is an extension of Dane's example that also include testing.
 
 Layered Architecture
-At a basic level, the architecture is designed with a layered strategy to include the following common/typical elements:
+    At a basic level, the architecture is designed with a layered strategy to include the following common/typical elements:
 
 * Presentation Layer (will be a module called models.py here)
 * Business Logic Layer (will be a module called commands.py here)
@@ -25,7 +25,7 @@ The DB Browser for SQLite tool will be useful to inspect the data and manage the
 
 The initial database wil consist of a table called time_entry:
 
-'''sql
+``` sql
 CREATE TABLE IF NOT EXISTS time_entry
 (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS time_entry
     Task_EndTime TEXT NOT NULL,
     Comment TEXT NULL,
 );
-'''
+```
 
 
 The TimeTracky factored using;
