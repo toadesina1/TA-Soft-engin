@@ -139,10 +139,10 @@ Finally, the details section shows a timeline of all your activity.
 
 The validation and justification should ensure that;
 
-Users can access the site and create an account, made unique by their email address and secured by a password.
+ 1.Users can access the site and create an account, made unique by their email address and secured by a password.
 
-On the portfollio, users can see which project they are currently working on, task assigned and when they started on it. They can also switch to 
-a different project (and are given choices of existing projects, or an option to create a new one) or cease working.
+ 2. On the portfollio, users can see which project they are currently working on, task assigned and when they started on it. They can also switch to 
+    a different project (and are given choices of existing projects, or an option to create a new one) or cease working.
 
-On the history page, users are presented with a list of the projects they have worked on for the current day, and how many hours they have spent. 
-The project manager have module to review the time entry of other users and rate the them accordginly. They also have right to assign task to site workers.
+ 3. On the history page, users are presented with a list of the projects they have worked on for the current day, and how many hours they have spent. 
+    The project manager have module to review the time entry of other users and rate the them accordginly. They also have right to assign task to site workers.
