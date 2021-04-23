@@ -1,27 +1,31 @@
 TimeTracky is inspired by the components of the APP Book's architecture that demonstrates some basic software engineering principles such as:
 
-Separation of concerns
-Loose Coupling
-Inheritance
-Extensibility
-Abstraction
-Refactoring
+* Separation of concerns
+* Loose Coupling
+* Inheritance
+* Extensibility
+* Abstraction
+* Refactoring
+
 The repository is an extension of Dane's example that also include testing.
 
 Layered Architecture
 At a basic level, the architecture is designed with a layered strategy to include the following common/typical elements:
 
-Presentation Layer (will be a module called models.py here)
-Business Logic Layer (will be a module called commands.py here)
-Presistence Layer (will be a module called repository.py here)
-Bare Bones Approach
-Persistence
+* Presentation Layer (will be a module called models.py here)
+* Business Logic Layer (will be a module called commands.py here)
+* Presistence Layer (will be a module called repository.py here)
+
+# Bare Bones Approach
+
+## Persistence
 We will take a bare bones approach and connect it directly to a sqlite database.
 
 The DB Browser for SQLite tool will be useful to inspect the data and manage the database file. SQLiteStudio is another alternative that would accomplish the same thing.
 
 The initial database wil consist of a table called time_entry:
 
+'''sql
 CREATE TABLE IF NOT EXISTS time_entry
 (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -32,6 +36,8 @@ CREATE TABLE IF NOT EXISTS time_entry
     Task_EndTime TEXT NOT NULL,
     Comment TEXT NULL,
 );
+'''
+
 
 The TimeTracky factored using;
 
