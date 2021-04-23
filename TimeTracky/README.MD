@@ -16,7 +16,7 @@ Layered Architecture
 * Business Logic Layer (will be a module called commands.py here)
 * Presistence Layer (will be a module called repository.py here)
 
-# Bare Bones Approach
+## Bare Bones Approach
 
 ## Persistence
 We will take a bare bones approach and connect it directly to a sqlite database.
