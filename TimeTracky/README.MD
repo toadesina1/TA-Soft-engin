@@ -1,5 +1,4 @@
-TimeTracky
-TiemTracky  is inspired by the components of the APP Book's architecture that demonstrates some basic software engineering principles such as:
+TimeTracky is inspired by the components of the APP Book's architecture that demonstrates some basic software engineering principles such as:
 
 Separation of concerns
 Loose Coupling
